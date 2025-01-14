@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Command Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            animation: fadeInBackground 2s ease-in-out;
+        }
+
+        @keyframes fadeInBackground {
+            0% { background: #1a1a1a; }
+            100% { background: #121212; }
+        }
+
+        header {
+            background: #222;
+            color: #f1f1f1;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin: 0;
+            font-family: 'Times New Roman', sans-serif;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        nav {
+            background: #333;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 18px 25px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        nav a:hover {
+            background: #444;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a i {
+            margin-right: 10px;
+        }
+
+        .container {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .command-section {
+            background: #2a2a2a;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .command-section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .command-section h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-family: 'Times New Roman', sans-serif;
+        }
+
+        .command-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .content-box {
+            flex: 1 1 65%;
+            padding-right: 30px;
+        }
+
+        .image-box {
+            flex: 1 1 35%;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .image-box img:hover {
+            transform: scale(1.05);
+            filter: grayscale(0);
+        }
+
+        pre {
+            background: #333;
+            color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            overflow-x: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #222;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1.5s;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .command-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-box {
+                padding-right: 0;
+            }
+
+            nav a {
+                padding: 12px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.4em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Linux Command Showcase</h1>
+        <p>Explore essential Linux commands</p>
+    </header>
+
+    <nav>
+        <a href="#sort"><i class="fas fa-sort"></i>sort</a>
+        <a href="#awk"><i class="fas fa-terminal"></i>awk</a>
+        <a href="#sed"><i class="fas fa-edit"></i>sed</a>
+        <a href="#cut"><i class="fas fa-cut"></i>cut</a>
+        <a href="#tr"><i class="fas fa-random"></i>tr</a>
+        <a href="#echo"><i class="fas fa-comment-dots"></i>echo</a>
+        <a href="#export"><i class="fas fa-share-alt"></i>export</a>
+        <a href="#history"><i class="fas fa-history"></i>history</a>
+        <a href="#rsync"><i class="fas fa-sync"></i>rsync</a>
+        <a href="#screen"><i class="fas fa-desktop"></i>screen</a>
+        <a href="#uniq"><i class="fas fa-check-square"></i>uniq</a>
+    </nav>
+
+    <div class="container">
+        <!-- sort -->
+        <section id="sort" class="command-section">
+            <div class="content-box">
+                <h2>sort</h2>
+                <p>The <code>sort</code> command sorts lines of text files. It supports alphabetic, numeric, and reverse sorting.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>sort filename.txt</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240124153804/2024-01-24_15-37.png" alt="sort command example">
+            </div>
+        </section>
+
+        <!-- awk -->
+        <section id="awk" class="command-section">
+            <div class="content-box">
+                <h2>awk</h2>
+                <p>The <code>awk</code> command processes text files line by line and is used for pattern scanning and data extraction.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>awk '{print $1}' filename.txt</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://linuxhint.com/wp-content/uploads/2021/04/word-image-41.png" alt="awk command example">
+            </div>
+        </section>
+
+        <!-- sed -->
+        <section id="sed" class="command-section">
+            <div class="content-box">
+                <h2>sed</h2>
+                <p>The <code>sed</code> command is a stream editor used for text manipulation, such as finding and replacing text in a file.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>sed 's/old/new/g' filename.txt</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTONzmnCS9zRPBjv2orYfm9rFQOKr5AlIrK7w&s" alt="sed command example">
+            </div>
+        </section>
+
+        <!-- cut -->
+        <section id="cut" class="command-section">
+            <div class="content-box">
+                <h2>cut</h2>
+                <p>The <code>cut</code> command is used to extract specific sections of a file or text by column or character.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>cut -d',' -f2 filename.txt</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://tecadmin.net/wp-content/uploads/2014/02/cut-command-animals.png" alt="cut command example">
+            </div>
+        </section>
+
+        <!-- tr -->
+        <section id="tr" class="command-section">
+            <div class="content-box">
+                <h2>tr</h2>
+                <p>The <code>tr</code> command is used to translate or delete characters from text.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>echo "hello" | tr 'a-z' 'A-Z'</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://images.javatpoint.com/linux/images/linux-tr-filter3.png" alt="tr command example">
+            </div>
+        </section>
+
+        <!-- echo -->
+        <section id="echo" class="command-section">
+            <div class="content-box">
+                <h2>echo</h2>
+                <p>The <code>echo</code> command is used to display text or variable values in the terminal.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>echo "Hello, World!"</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/echo1.png" alt="echo command example">
+            </div>
+        </section>
+
+        <!-- export -->
+        <section id="export" class="command-section">
+            <div class="content-box">
+                <h2>export</h2>
+                <p>The <code>export</code> command is used to set environment variables that are available to child processes.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>export VAR=value</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://journaldev.nyc3.cdn.digitaloceanspaces.com/2019/03/exporting-a-variable.png" alt="export command example">
+            </div>
+        </section>
+
+        <!-- history -->
+        <section id="history" class="command-section">
+            <div class="content-box">
+                <h2>history</h2>
+                <p>The <code>history</code> command displays the list of previously executed commands.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>history</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2018-12-22-22-58-47.png" alt="history command example">
+            </div>
+        </section>
+
+        <!-- rsync -->
+        <section id="rsync" class="command-section">
+            <div class="content-box">
+                <h2>rsync</h2>
+                <p>The <code>rsync</code> command is used to synchronize files and directories between systems.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>rsync -av source/ destination/</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230713153729/379.webp" alt="rsync command example">
+            </div>
+        </section>
+
+        <!-- screen -->
+        <section id="screen" class="command-section">
+            <div class="content-box">
+                <h2>screen</h2>
+                <p>The <code>screen</code> command is used to manage multiple terminal sessions within a single terminal window.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>screen</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20190420104739/Screenshot-675.png" alt="screen command example">
+            </div>
+        </section>
+
+        <!-- uniq -->
+        <section id="uniq" class="command-section">
+            <div class="content-box">
+                <h2>uniq</h2>
+                <p>The <code>uniq</code> command removes duplicate lines from a sorted file.</p>
+                <p><strong>Usage:</strong></p>
+                <pre>uniq filename.txt</pre>
+            </div>
+            <div class="image-box">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB61qRtoOPwxzJCtcQNrfexGzD4orFcn7Nxw&s" alt="uniq command example">
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Linux Command Showcase</p>
+    </footer>
+</body>
+</html>
